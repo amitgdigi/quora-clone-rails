@@ -1,0 +1,7 @@
+<header>
+<%= link_to "Go to Question Page", questions_path %>
+</header>
+<h1>Answer</h1>
+<div> <%= @answer.answer  %></div>
+<%= link_to "Go to Question", question_path(@answer) %>
+

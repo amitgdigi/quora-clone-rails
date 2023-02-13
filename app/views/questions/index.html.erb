@@ -1,0 +1,25 @@
+<h1>Questions</h1>
+
+<div>
+    <% if current_user  %>
+        <strong>
+            <%= link_to "Your Questions", ques_path  %> &nbsp;
+            <%= link_to "Your Answers", ans_path  %> &nbsp;
+            <%= link_to "Create new Topic", new_topic_path %>
+        </strong>
+<% end %>
+</div>
+<% @questions.each do |question| %><br>
+<div>
+    <strong>
+        <%= question.question   %><br>        
+    </strong>
+    <%= link_to "show", question_path(question)%>
+    <% if current_user && question.user_id == current_user.id %>
+
+        <%= link_to "edit", edit_question_path(question) %>
+        <%= link_to "delete", question_path(question), method: :delete %>
+        
+    <%  end  %>
+<%  end  %>
+</div>

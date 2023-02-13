@@ -1,0 +1,6 @@
+<h1>Topics</h1> 
+<%= form_with( model: @topic , remote: true) do |f| %>
+    <%= f.label :topic %>
+    <%= f.text_area :topic %>
+    <%= f.submit %>
+<% end %>

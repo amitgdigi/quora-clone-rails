@@ -1,0 +1,9 @@
+<h1>Users Questions</h1> 
+ <strong> Your Questions </strong>
+<% @user.questions.each do |ques| %>
+    <div> <%= current_user.name %>
+        <li>
+            <%= link_to ques.question, question_path(ques) %>
+        </li>
+    </div>
+<% end %>  

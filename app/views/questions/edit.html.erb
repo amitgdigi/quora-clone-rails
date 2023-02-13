@@ -1,0 +1,13 @@
+<%= form_with( model: @question ) do |f| %>
+    &nbsp;
+    <%= f.label :question %>
+    &nbsp;
+    <%= f.text_area :question %>
+    &nbsp;
+    <%= f.submit 'Edit Question'%>
+<% end %>
+
+    &nbsp;
+<div>
+    <%= link_to "Back to Questions", questions_path %>
+</div>

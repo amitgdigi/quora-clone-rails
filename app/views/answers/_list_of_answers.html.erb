@@ -1,0 +1,5 @@
+<h1>List of Answers</h1>
+<% @question.answers.each do |list| %>
+    <p><%= list.answer %><span> By:<%= User.find(Question.find(params[:id]).user_id).name %></span>
+    </p>
+<% end%>

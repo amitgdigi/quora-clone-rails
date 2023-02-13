@@ -1,0 +1,9 @@
+<h1>Users Answers</h1> 
+
+<% @ans.each do |anser| %>
+    <div> <ul>
+    <li>Questions:<%= Question.find_by(id: anser.question_id).question %></li>
+    Answer:<%= anser.answer %>   
+        </ul>
+    </div>  
+<% end %>  
