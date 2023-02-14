@@ -3,7 +3,7 @@ class AnswersController < ApplicationController
 
     # def new
     #     @answer = Answer.new
-    #     # @questions = Question.all 
+    #     byebug 
     # end
 
     def create
@@ -17,8 +17,8 @@ class AnswersController < ApplicationController
             # redirect_to question_answer_path(@answer, q_id)
             redirect_to question_answer_path(@question,@answer)
         else
-            flash[:danger] = 'Please try again'
-            redirect_to 'new'
+            flash[:danger] = 'Unable to save Your Amswer, Please try again'
+            redirect_to question_path(@question)
         end
         
     end

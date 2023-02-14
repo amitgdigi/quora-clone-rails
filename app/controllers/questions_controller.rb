@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
     before_action :authenticate_user!, only: [:new, :edit, :create, :destroy]
     before_action :set_question, only: [:edit, :show]
+    # before_action :set_topics
  
     def new
         @question = current_user.questions.build
@@ -8,12 +9,11 @@ class QuestionsController < ApplicationController
 
     def create 
         # @user = current_user
-
         @question = current_user.questions.build(question_params)
         if @question.save
             flash[:success] = "Question is created"
             # redirect_to @question
-            redirect_to questions_path()
+            redirect_to questions_path
             # redirect_to question_path(@question)
         else
             flash[:danger] = "Unable to create Question"
@@ -24,11 +24,11 @@ class QuestionsController < ApplicationController
     def index
         @questions = Question.all
     end
-
+    
     def show
-       @question = Question.find(params[:id])
+        @question = Question.find(params[:id])
     end
-
+    
     def edit
         @question = Question.find(params[:id])
     end
@@ -40,6 +40,10 @@ class QuestionsController < ApplicationController
         end
     end
 
+    # def set_topics
+    #     @topics = Topic.all
+    # end
+
     private 
     def set_question
         @question = Question.find(params[:id])
@@ -48,7 +52,7 @@ class QuestionsController < ApplicationController
     
 
     def question_params
-        params.require(:question).permit(:question)
+        params.require(:question).permit(:question, :topic_id)
     end
 
 end

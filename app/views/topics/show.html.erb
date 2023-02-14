@@ -1,3 +1,6 @@
 <h3>Topic show page</h3>
-<%= @topic.topic %> 
-<%= link_to "Back to Topics", topics_path %>
+<div>
+    <strong>Created Topic:&nbsp;&nbsp;<%= @topic.topic %> 
+    </strong>
+</div>
+<%= link_to "Go to Topics", topics_path %>
