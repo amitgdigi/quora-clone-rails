@@ -1,10 +1,17 @@
  <%= link_to "Back", root_path %>
  <div>
- <p>Question:</p>
+   <% if current_user.email == User.find(@question.id).email %>
+      <%= render 'topics/list', object: @question %> 
+   <% end %>
+ <br/>
+ <br/>
+ <br/>
+   <p>Question:</p>
+   
    <h2><%= @question.question %></h2>
       <%= render 'answers/list_of_answers' %>
-   &nbsp;
-   <h3>Give Answer </h3>
+      &nbsp;
+      <h3>Give Answer </h3>
    <% if current_user %>
       <%= render 'answers/answer', object: @question %>
    <% end %>

@@ -1,3 +1,9 @@
-<% @topics.each do |topi| %>
-    <li><%= topi.topic %>(id:<%= topi.id %>)</li>
+<h1>Topics</h1> 
+<% Topic.all.each do |topi| %> 
+<table>
+    <tr>
+        <td><%= topi.topic %>(id:<%= topi.id %>)
+        <%= render "topics/add_topic_button", object: topi %></td>
+    </tr>
+</table>    
 <% end %>

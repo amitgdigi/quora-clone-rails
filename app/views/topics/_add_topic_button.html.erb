@@ -1,0 +1,5 @@
+<% if topic_added?(@question, object ) %>
+    <%= button_to "Unfollow", remove_topic_question_topic_path(@question, object) , method: :delete %> 
+<% else %>
+    <%= button_to "Follow", add_topic_question_topic_path(@question, object) , method: :post %> 
+<% end %> 

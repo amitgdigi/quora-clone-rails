@@ -3,8 +3,9 @@
 <table>
       <tr>
          <th><%= render "topics/follow_button", topic: topi %></th>
-         <td><%= link_to 'show', topic_path(topi) %> &nbsp; </td>
-         <td><%= topi.topic %>(id:<%= topi.id %>)</td>
+         <td><%= link_to 'Similar Questions', topic_path(topi) %> &nbsp; </td>
+ <br/>
+         <th><%= topi.topic %>(id:<%= topi.id %>)</th>
       </tr>
 </table>    
 <% end %>

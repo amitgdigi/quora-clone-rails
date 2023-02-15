@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # get '/:id',to: 'follow#user_questions'
   get '/ques',to: 'pages#user_questions'
   get '/ans',to: 'pages#user_answers'
+  get '/topi_ques',to: 'pages#topic_questions'
   # post 'users/:id', to: 'follow#follow'
   # delete 'users/:id', to: 'follow#unfollow'
   # get 'pages/about'
@@ -14,6 +15,12 @@ Rails.application.routes.draw do
   #   delete :unfollow
   # end;
   resources :questions do
+    resources :topics do
+      member do
+        post :add_topic
+        delete :remove_topic
+    end
+  end
     resources :answers, only: [:new, :show, :create, :destroy]
   end
   # resources :follows, only: [:create, :destroy] 

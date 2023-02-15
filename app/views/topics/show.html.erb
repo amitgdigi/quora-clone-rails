@@ -1,9 +1,38 @@
 <h3>Topic show page</h3>
 <div>
-    <strong>Created Topic:&nbsp;&nbsp;<%= @topic.topic %> 
+    <strong>Created Topic:&nbsp;&nbsp;<%= @topic.topic %> </strong>
+<div>
+<br/>
+    <% all = QuestionTopic.where(topic_id: @topic.id)  %>
+    <% all.each do |a| %>
+        <% question = Question.find_by(id: a.question_id).question %>
+        <%= link_to question, question_path(a.id) %>
+    <% end %>
+<br/>
+<br/>
     <% if current_user %>
         <%= render "topics/follow_button", topic: @topic %>
     <% end %>
-    </strong>
 </div>
+</div>
+<br/>
+<br/>
 <%= link_to "Go to Topics", topics_path %>
+      
+   
+
+<%
+=begin%>
+ <h1>Users Questions</h1> 
+ <strong> Your Questions </strong>
+<% @user.questions.each do |ques| %>
+    <div> <%= current_user.name %>
+        <li>
+            <%= link_to ques.question, question_path(ques) %>
+        </li>
+    </div>
+<% end %>   
+<%
+=end%>
+<div></div>
+<div></div>
