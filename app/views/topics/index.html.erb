@@ -1,19 +1,11 @@
-<h1>Topics</h1>
-   <%
-=begin%>
- <%= form( @topics ) do |f| %>
-    <%= f.select :topic_id, Topic.all.collect {|p| [p.topic, p.id]} %>
-    
-   <%=f.submit %>
-   <% end %> 
-<%
-=end%>
- <% @topics.each do |topi| %>
- <%
-=begin%>
- <%= topi.select :topic_id, @topics, :id, :topic , include_blank: true%> 
-<%
-=end%>
-    <li><%= topi.topic %>(id:<%= topi.id %>)</li>
-    <% end %>
+<h1>Topics</h1> 
+<% @topics.each do |topi| %> 
+<table>
+      <tr>
+         <th><%= render "topics/follow_button", topic: topi %></th>
+         <td><%= link_to 'show', topic_path(topi) %> &nbsp; </td>
+         <td><%= topi.topic %>(id:<%= topi.id %>)</td>
+      </tr>
+</table>    
+<% end %>
    

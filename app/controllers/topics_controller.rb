@@ -4,7 +4,25 @@ class TopicsController < ApplicationController
     def new
         @topic = Topic.new
     end
+    def follow
+        topic = Topic.find(params[:topic_id])
+        @topic_follow = Follow.create(user_id: current_user.id, topic_id: topic.id)
+        if @topic_follow.save
+            flash[:alert] = "Topic is Followed"
+        end
+    end
+
+    def unfollow
+        topic = Topic.find(params[:topic_id])
+        @topic_follow = Follow.where(user_id: current_user.id, topic_id: topic.id)
+        puts @topic_follow
+        unless @topic_follow.nil?
+            @topic_follow.destroy_all
+            flash[:alert] = "Topic is unfollowed"
+        end
     
+    end 
+
     def create 
         # any = Topic.find_by(topic: params[:topic][:topic])
         # # puts 'any[:topic]'
@@ -35,10 +53,17 @@ class TopicsController < ApplicationController
     #         byebug
     #     end
     # end
-
     
+    # def show
+    #     # user = current_user
+    #     byebug
+    #     topic = Topic.find(params[:id])
+    # end
+
     def index            
         @topics = Topic.all
+        # byebug
+        # @user_topics = current_user.topic.all
     end 
     def destroy
         @topic.destroy

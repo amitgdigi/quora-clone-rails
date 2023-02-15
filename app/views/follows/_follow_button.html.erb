@@ -1,0 +1,8 @@
+<% if following_topic?(topic) %>
+    <%= render "follows/unfollow", topic: topic  %>
+<% else %>
+    <%= render "follows/follow", topic: topic  %>
+<% end %>  
+
+
+ 

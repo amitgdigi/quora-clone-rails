@@ -1,6 +1,9 @@
 <h3>Topic show page</h3>
 <div>
     <strong>Created Topic:&nbsp;&nbsp;<%= @topic.topic %> 
+    <% if current_user %>
+        <%= render "topics/follow_button", topic: @topic %>
+    <% end %>
     </strong>
 </div>
 <%= link_to "Go to Topics", topics_path %>

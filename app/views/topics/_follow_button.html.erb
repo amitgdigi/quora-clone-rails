@@ -1,0 +1,5 @@
+<% if following_topic?(topic) %>
+    <%= button_to "Unfollow", topic_unfollow_path(topic) , method: :delete %> 
+<% else %>
+    <%= button_to "Follow", topic_follow_path(topic) , method: :post %> 
+<% end %>

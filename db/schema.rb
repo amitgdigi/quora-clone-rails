@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_13_140346) do
+ActiveRecord::Schema.define(version: 2023_02_14_064518) do
 
   create_table "answers", force: :cascade do |t|
     t.string "answer"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 2023_02_13_140346) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "topic_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["topic_id"], name: "index_follows_on_topic_id"
+    t.index ["user_id", "topic_id"], name: "index_follows_on_user_id_and_topic_id", unique: true
+    t.index ["user_id"], name: "index_follows_on_user_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -53,6 +63,8 @@ ActiveRecord::Schema.define(version: 2023_02_13_140346) do
 
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
+  add_foreign_key "follows", "topics"
+  add_foreign_key "follows", "users"
   add_foreign_key "questions", "topics"
   add_foreign_key "questions", "users"
 end
