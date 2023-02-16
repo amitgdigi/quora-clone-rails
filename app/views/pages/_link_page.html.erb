@@ -1,0 +1,11 @@
+<header>
+    <% if current_user %>
+        <strong>
+            <%= link_to "Your Questions" , ques_path %> &nbsp;
+            <%= link_to "Your Answers" , ans_path %> &nbsp;
+            <%= link_to "Create Topic" , new_topic_path %> &nbsp;
+            <%= link_to "See Topics" , topics_path %> &nbsp;
+            <%= link_to "Users", userss_path %> &nbsp; 
+        </strong>
+        <% end %>
+</header>

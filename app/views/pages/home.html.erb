@@ -1,0 +1,19 @@
+<%= render "pages/link_page" %>
+<%= link_to "View Questions", questions_path %>
+<div>
+last queestin
+<%= @ques = Question.last %>
+
+  
+ <%
+=begin%>
+ <%= render "questions/question_view", question: @ques %>   
+<%
+=end%>
+ 
+<%
+=begin%>
+ <%= link_to "View Questions", question_path %> 
+<%
+=end%>
+</div>

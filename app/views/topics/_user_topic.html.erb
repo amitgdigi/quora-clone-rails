@@ -1,8 +1,8 @@
  <h3>Topics You follow </h3>
  
-<main>
+<div class='main'>
     <% if current_user&.topic&.each do |topic| %>
-        <li> <%= topic.topic %> </li>
+        <li> <%= link_to topic.topic, topic_path(topic) %> </li>
         <% end %> 
     <% end %> 
-</main>
+</div>

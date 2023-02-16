@@ -12,13 +12,19 @@
 # end
 
 # 5.times do |n|
-#     Question.create!(question: "question number#{n}", user_id:"2")
-#     puts n
+#     Question.create!(question: "question number#{n}", user_id:n+1)
+#     puts n    
 # end
 
 # 5.times do |n|
-#     Answer.create!(answer: "answer#{n+1}", question_id:n+1)
+#     Answer.create!(answer: "answer#{n+1}", question_id:n+1, user_id: n+1)
 # end
+# 5.times do |n|
+#     Topic.create!(topic: "topic #{n+1}")
+# end
+# 5.times do |n|
+#     Topic.create!(topic: "topic #{n+1}")
+# end   
 
 # post '/users/:id/follow', to: "users#follow", as: "follow_user"
 # post '/users/:id/unfollow', to: "users#unfollow", as: "unfollow_user"

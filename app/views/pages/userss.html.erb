@@ -1,0 +1,10 @@
+<h1>Users Page</h1> 
+ <strong> Follow them </strong> 
+ <% @users.each do |user| %> 
+    <% another_user = user if user != current_user   %>
+    <% if !another_user.nil? %>
+        <% ano_user = another_user  %> 
+        <%= render "pages/user_button", ano_user: ano_user %><%= ano_user.name%>
+        
+    <% end %> 
+ <% end %> 
