@@ -5,7 +5,11 @@
 <table>
       <tr>
          <th><%= render "topics/follow_button", topic: topi %></th>
-         <td><%= link_to 'Similar Questions', topic_path(topi) %> &nbsp; </td>
+         <%
+=begin%>
+ <td><%= link_to 'Similar Questions', topic_path(topi) %> &nbsp; </td> 
+<%
+=end%>
  <br/>
          <th><%= topi.topic %>(id:<%= topi.id %>)</th>
       </tr>

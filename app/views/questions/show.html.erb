@@ -1,7 +1,7 @@
  <%= link_to "Back", root_path %>
  <div>
    <% if user_signed_in? %>
-      <% if (current_user.email == User.find(@question.user_id).email)  %>
+         <% if (current_user.id == User.find(@question.user_id).id)  %>
          <%= render 'topics/list', object: @question %> 
       <% end %>
    <% end %>
@@ -9,20 +9,5 @@
  <br/>
  <br/>
    <p>Question:</p>
-   <%
-=begin%>
- <%= render "questions/question_view", question: @question %> 
-<%
-=end%>
-   
- <h2><%= @question.question %></h2>
-      <%= render 'answers/list_of_answers' %>
-      &nbsp;
-      <h3>Give Answer </h3>
-   <% if current_user %>
-      <%= render 'answers/answer', object: @question %>
-   <% end %> 
-
- </div>
-
-    <h3>Answer</h3>
+   <%= render "questions/question_view", question: @question %> 
+ </div> 

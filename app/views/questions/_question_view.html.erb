@@ -1,0 +1,7 @@
+<h2><%= question.question %></h2>
+<tr><td>By: <%= User.find(question.user_id).name %></td></tr>
+<tr><td><%= time_ago_in_words(question.created_at) %> ago</td>
+    <%= render 'answers/list_of_answers', question: question %> 
+<% if current_user %>
+    <%= render 'answers/answer', question: question %>
+<% end %> 

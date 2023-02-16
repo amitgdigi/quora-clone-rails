@@ -27,7 +27,6 @@ class PagesController < ApplicationController
 
     def add_user
         user = User.find(params[:id])
-        byebug
         @added_user = Relationship.create(following_id: current_user.id, followed_id: user.id)
                     # <Relationship id: nil, following_id: nil, followed_id: nil>
         if @added_user.save
@@ -47,7 +46,6 @@ class PagesController < ApplicationController
         @added_user = Relationship.where(following_id: current_user.id, followed_id: user.id)
         # <Relationship id: nil, following_id: nil, followed_id: nil>
         unless @added_user.nil?
-            byebug
             @added_user.destroy_all
             flash[:success] = "unfollowed #{user.name}"
         else

@@ -1,5 +1,10 @@
-<h1>List of Answers</h1>
-<% @question.answers.each do |list| %>
-    <p><%= list.answer %><span> By:<%= User.find(Question.find(params[:id]).user_id).name %></span>
-    </p>
-<% end%>
+<table>
+    <h1>List of Answers</h1>
+    <% question.answers.each do |list| %>
+        <tr>
+        <th><%= list.answer %></th>
+        <td>By: <%= User.find(list.user_id).name %></td>
+        <td><%= time_ago_in_words(list.created_at) %> ago</td>
+        </tr>
+    <% end%>
+</table>
