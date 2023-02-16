@@ -42,7 +42,7 @@ class PagesController < ApplicationController
         redirect_to userss_path
     end
 
-    def remove_user
+    def remo_user
         user = User.find(params[:id])
         @added_user = Relationship.where(following_id: current_user.id, followed_id: user.id)
         # <Relationship id: nil, following_id: nil, followed_id: nil>
