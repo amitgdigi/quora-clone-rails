@@ -1,28 +1,24 @@
 class PagesController < ApplicationController 
-    before_action :authenticate_user!
+    before_action :authenticate_user!, only: [:add_user, :remo_user]
     def user_questions
         @user = current_user
-        @ques = @user.questions.all
+        # byebug
+        @ques = @user.questions.paginate(page: params[:page], per_page: 10)
     end
 
     def user_answers
         # byebug
         @user = current_user
-        @ans = @user.answers.all
+        @ans = @user.answers.paginate(page: params[:page], per_page: 10)
         # byebug
     end
-    # def topic_questions
-    #     byebug
-    #     # topic
-    #     # @top_ques = topic.question_topics
-    #     # QuestionTopic.where(question_id: question.id)
-    #     # question.question_topics.all
 
-    # end
     def userss
         puts "hello"
         puts "hello"
-      @users = User.all
+      @users = User.paginate(page: params[:page], per_page: 5)
+#  <% @users= User.paginate(page: params[:page], per_page: 5)%>
+
     end
 
     def add_user

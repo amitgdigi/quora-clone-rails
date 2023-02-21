@@ -17,18 +17,47 @@
 <%
 =end%>
 
-<h1>Questions</h1>
-<table>
+<h1>Questions</h1> 
+ <div class="list-group">
+<% @questions.each do |question| %>
+    <div class="list-group-item list-group-item-action flex-column ">
+    <div class="d-flex justify-content-between w-80 ">
+        <h5 class="mb-1">
+    <%= link_to question.question , question_path(question)%> </h5>
+    <div class = "d-flex w-20 justify-content-around edit-delete">
+    <% if current_user && question.user_id==current_user.id %>
+        <small class="right-1" ><%= link_to "edit" , edit_question_path(question) %></small>
+        <small class="right-2"><%= link_to "delete" , question_path(question), method: :delete %></small>
+    <% else %>
+        <small class="right-1" >Asked by: <%= User.find(question.user_id).name %></small>
+        <small class="right-2"><%= time_ago_in_words(question.created_at) %> ago</small>
+    <% end %>
+
+    </div>
+    </div>
+    </div>
+         <% end %>
+    </div>
+
+
+<%
+=begin%>
+ <table >
 <% @questions.each do |question| %>
     <tbody>
         <tr>
-            <th><%= question.question %></th>
+            <th ><%= question.question %></th>
             <td><%= link_to "View" , question_path(question)%></td>
         <% if current_user && question.user_id==current_user.id %>
             <td><%= link_to "edit" , edit_question_path(question) %></td>
             <td><%= link_to "delete" , question_path(question), method: :delete %></td>
         <% end %>
     <% end %>
-        </tr>
+        </tr><br/>
     </tbody>
-</table>
+</table> 
+<%
+=end%>
+<br/>
+ <%= will_paginate @questions %>  
+<br/>

@@ -1,13 +1,9 @@
- <%= link_to "Back", root_path %>
- <div>
-   <% if user_signed_in? %>
-         <% if (current_user.id == User.find(@question.user_id).id)  %>
-         <%= render 'topics/list', object: @question %> 
-      <% end %>
-   <% end %>
- <br/>
- <br/>
- <br/>
-   <p>Question:</p>
-   <%= render "questions/question_view", question: @question %> 
- </div> 
+<%= link_to "Back", root_path %> <br/> <br/> 
+ <strong>Topics:</strong> 
+<% @question.topic.each do |topic| %>
+  <div> <%= topic.topic %> </div>
+<% end %> <br/>
+ <strong>Question:</strong>
+<div>
+  <%= render "questions/question_view", question: @question , last: false %>
+</div> 

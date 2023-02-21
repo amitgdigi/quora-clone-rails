@@ -1,9 +1,9 @@
-<h1>Topics</h1> 
-<% Topic.all.each do |topi| %> 
-<table>
+<table style = "width:50%" >
+<h1>Question Topics</h1> 
     <tr>
-        <td><%= topi.topic %>(id:<%= topi.id %>)
-        <%= render "topics/add_topic_button", object: topi %></td>
+    <% Topic.all.each do |topi| %> 
+            <td><%= topi.topic %>(id:<%= topi.id %>)
+            <%= render "topics/add_topic_button", object: topi %></td>
+    <% end %>
     </tr>
 </table>    
-<% end %>

@@ -1,4 +1,21 @@
-<%= render "pages/link_page" %>
-<div> last question <% @last = Question.last %>
-<%= render "questions/question_view", question: @last %>    
+<br/>
+<br/> 
+<div class="card-deck">
+<% @topics = Topic.paginate(page: params[:page], per_page: 5 )%>
+    <% @topics.each do |topic_question| %>
+<div class>
+<div class="card-body">
+        <p class="cards-title " >
+        <p class = "color1" ><%= link_to topic_question.topic, topic_path(topic_question) %></p></p>
+</div>
+</div>
+    <% end %>
+</div>
+<%= will_paginate @topics %>
+<div>   
+<br/>
+<% Question.take(7).each do |ques|%>
+    
+ <%= render "questions/question_view", question: ques , last: true %>     
+<% end %>
 </div>

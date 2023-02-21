@@ -1,10 +1,33 @@
 <table>
-    <h1>List of Answers</h1>
-    <% question.answers.each do |list| %>
-        <tr>
-        <th><%= list.answer %></th>
-        <td>By: <%= User.find(list.user_id).name %></td>
-        <td><%= time_ago_in_words(list.created_at) %> ago</td>
-        </tr>
+
+    <% @ans = question.answers.paginate(page: params[:page], per_page: 5) %>
+    <% @ans.each do |list| %>
+<div class="card">
+<div class="card-body ans-pading">
+<div class="card-title"><%= list.answer %>
+</div>
+<div class="d-flex">
+<small class="pd-r-20">
+By: <%= User.find(list.user_id).name %>
+</small>
+<small class="pd-r-20">
+<%= time_ago_in_words(list.created_at) %> ago
+</small>
+
+</div>
+</div>
+</div>
     <% end%>
 </table>
+
+        <%
+=begin%>
+ <tr>
+        <th></th>
+        <td>By: <%= User.find(list.user_id).name %></td>
+        <td><%= time_ago_in_words(list.created_at) %> ago</td>
+        </tr> 
+<%
+=end%>
+
+    <%= will_paginate @ans %>

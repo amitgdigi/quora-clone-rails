@@ -1,7 +1,52 @@
-<h2><%= question.question %></h2>
-<tr><td>By: <%= User.find(question.user_id).name %></td></tr>
-<tr><td><%= time_ago_in_words(question.created_at) %> ago</td>
-    <%= render 'answers/list_of_answers', question: question %> 
-<% if current_user %>
-    <%= render 'answers/answer', question: question %>
-<% end %> 
+
+ <div class="list-group">
+    <div class="list-group-item list-group-item-action flex-column ">
+    <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">
+    <%= link_to question.question , question_path(question)%> </h5>
+        <small>Asked by: <%= User.find(question.user_id).name %></small>
+        <small> <%= time_ago_in_words(question.created_at) %> ago</small>
+    </div>
+    
+    <% if last & ans = question.answers.last %>
+    <p class="mb-1"><%= ans.answer %></p>
+    <small>Answerd by: <%= User.find(ans.user_id).name %></small>
+    <small> <%= time_ago_in_words(ans.created_at) %> ago</small>
+    <% elsif !last %>
+        <%= render 'answers/list_of_answers', question: question %>
+
+        <%= render 'answers/answer', question: question if user_signed_in? %>
+    <% end %> 
+</div>
+</div> 
+
+<%
+=begin%>
+
+
+
+
+
+
+<br />
+<table  >
+<tr ><td ><%= link_to question.question , question_path(question)%></td>
+    <td>By: <%= User.find(question.user_id).name %></td>
+    <td><%= time_ago_in_words(question.created_at) %> ago</td></tr> 
+    <% if last & ans = question.answers.last %>
+        <tr><td><%= ans.answer %></td>
+        <td>By: <%= User.find(ans.user_id).name %></td>
+        <td><%= time_ago_in_words(ans.created_at) %> ago</td>
+        </tr>
+    <% elsif !last %>
+        <%= render 'answers/list_of_answers', question: question %>
+
+        <%= render 'answers/answer', question: question if user_signed_in? %>
+    <% end %> 
+     
+</table> 
+
+<%
+=end%>
+
+<div> </div>

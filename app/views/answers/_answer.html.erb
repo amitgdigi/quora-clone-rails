@@ -1,6 +1,8 @@
-<h1>Answer page</h1>  
+<br/>
+<br/>
+
 <%= form_with(model: [question, question.answers.build] ) do |f| %>
-    <%= f.label :answer %>
-    <%= f.text_area :answer %>
-    <%= f.submit 'Submit' %>
+    <div class="field"> <%= f.label :answer %> </div>
+    <div class="field"> <%= f.text_area :answer %> </div>
+    <div class="action"> <%= f.submit 'Submit' %> </div>
 <% end %>

@@ -3,17 +3,21 @@
  &nbsp; <%= @topic.topic %> </strong></div>
 <br/> 
 <br/>
-<table>
-    <thead><tr><td>Similar Questions</td></tr>
-    </thead>
-    <tbody> 
     <% all = QuestionTopic.where(topic_id: @topic.id)  %>
-    <% all.each do |a| %>
-    <% question = Question.find_by(id: a.question_id).question %>
-        <tr><td> <%= link_to question, question_path(a.id) %></td> </tr>
-    <% end %>   
-    <tbody>
+<table>
+    <% if all.count > 0 %>
+        <thead><tr><td>Similar Questions</td></tr> </thead>
+        <tbody> 
+        <% all.each do |a| %>
+        <% question = Question.find_by(id: a.question_id).question %>
+            <tr><td> <%= link_to question, question_path(a.id) %></td> </tr>
+        <% end %>   
+        </tbody>
+        <% else %>
+        <td> No any Similar Question </td>
+    <% end %>
 </table>
+
 <br/>
 <br/>
 <%= link_to "Go to Topics", topics_path %>       

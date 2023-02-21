@@ -1,13 +1,8 @@
 class AnswersController < ApplicationController
-    before_action :authenticate_user!
-    # , only: [ :create , :destroy]
-
-    # def new
-    #     @answer = Answer.new
-    #     byebug 
-    # end
+    before_action :authenticate_user!, only: [:create, :show, :destroy]
 
     def create
+        
         @question = Question.find(params[:question_id])
         @answer = @question.answers.create(answer_params)
         @answer.user = current_user
@@ -30,7 +25,8 @@ class AnswersController < ApplicationController
     end
 
     def index
-        @answers = @question.answers.all
+        byebug
+        @answers = @question.answers.paginate(page: params[:page], per_page: 5)
     end
 
     def destroy

@@ -1,9 +1,21 @@
 <h1>Users Questions</h1> 
- <strong> Your Questions </strong>
-<% @user.questions.each do |ques| %>
-    <div> <%= current_user.name %>
-        <li>
-            <%= link_to ques.question, question_path(ques) %>
-        </li>
-    </div>
-<% end %>  
+ <% @ques.each do |ques| %>  
+    <div class="list-group">
+        <div class="list-group-item list-group-item-action flex-column ">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1"> <%= link_to ques.question , question_path(ques)%> </h5>
+            <% if ans = ques&.answers&.last %>
+            </div>
+                <h5 class="mb-1"> Answer: <%= ans.answer %> </h5 >
+            <div class="d-flex-start ">
+                <small> Answerd by: <%= User.find(ans.user_id).name %> </small>
+                <small class="pd-20" >Time: <%= time_ago_in_words(ans.created_at) %> ago </small>
+            </div >
+            <% else %>
+                <small> No any answer </small>
+            </div >
+            <% end %>  
+        </div>
+    </div> 
+<% end %> 
+ <%= will_paginate @ques %>   

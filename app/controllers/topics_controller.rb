@@ -1,5 +1,5 @@
-class TopicsController < ApplicationController
-    before_action :authenticate_user!
+class TopicsController < ApplicationController     
+    before_action :authenticate_user!, only: [:new, :follow, :unfollow, :add_topic, :index, :remove_topic, :create, :destroy]
     before_action :set_topics, only: [:show, :edit]
     def new
         @topic = Topic.new
@@ -50,24 +50,13 @@ class TopicsController < ApplicationController
     end
 
     def create 
-        # any = Topic.find_by(topic: params[:topic][:topic])
-        # # puts 'any[:topic]'
-        # # puts 'params[:topic][:topic]'
-        # # puts params[:topic][:topic]
-        # # # puts any[:topic] = nil?
-        # # # puts any[:topic] .& params[:topic][:topic]
-        # if any[:topic] == params[:topic][:topic]
-        #     flash[:danger] = 'Topic is present'
-        #     redirect_to root_path
-        #     puts "topic is already present"
-        # else 
             @topic = Topic.create(topic_params)
         if  @topic.save
             redirect_to @topic
             puts "Unique topic"
             flash[:notice] = "topic is created"
         else
-            flash[:danger] = "null value or topic is already present"
+            flash[:danger] = "Topic is already present"
             redirect_to root_path
         end
     end
