@@ -1,8 +1,25 @@
-<br/>
-<br/>
 
+<br/>
 <%= form_with(model: [question, question.answers.build] ) do |f| %>
+<div class="container"> 
+<div class="row d-flex new-form-row">
+<div class="col-8.5"><%= f.text_area :answer, cols: 80, rows: 7 , placeholder: "Give Answer"%></div>
+<div class="col-1 pb-2"><%= f.submit 'Submit' %></div>
+<div class="col-2 pb-2"><%= f.label :attachment %><%= f.file_field :attachment %></div>
+</div>
+</div>
+<% end %> 
+
+
+<%
+=begin%>
+ <%= form_with(model: [question, question.answers.build] ) do |f| %>
     <div class="field"> <%= f.label :answer %> </div>
     <div class="field"> <%= f.text_area :answer %> </div>
     <div class="action"> <%= f.submit 'Submit' %> </div>
-<% end %>
+    <div class="field"> <%= f.label :attachment %>
+<%= f.file_field :attachment %> </div>
+<% end %> 
+<%
+=end%>
+<div></div>

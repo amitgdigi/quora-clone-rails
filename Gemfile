@@ -28,9 +28,12 @@ gem 'will_paginate', '~> 3.3', '>= 3.3.1'
 # gem 'image_processing', '~> 1.2'
 gem 'bootstrap', '~> 4.4.1'
 gem 'jquery-rails'
-
+# image processing for image attachement
+gem 'image_processing', '~> 1.12', '>= 1.12.2'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+# validation for active storage files
+gem 'active_storage_validations', '~> 1.0', '>= 1.0.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,8 +1,36 @@
 <h3>Topic show page</h3>
-<div> <strong>Topic -:
- &nbsp; <%= @topic.topic %> </strong></div>
-<br/> 
+
 <br/>
+<div class="d-flex justify-content-around w-20">
+<strong><%= @topic.topic %> </strong>
+<strong><%= render "topics/follow_button", topic: @topic %></strong>
+</div>
+<br/>
+<% all = QuestionTopic.where(topic_id: @topic.id)  %>
+<% if all.count > 0 %>
+    <div >Topic Questions</div>
+    <div class="container" >
+            <div class="row" >
+                <% all.each do |a| %>
+                    <% question = Question.find_by(id: a.question_id).question %>
+                    <div class="col-10" > <%= link_to question, question_path(a.question_id) %></div>
+                    <div class="col-2 text-center" >
+                    <% if a.question.answers.any? %> 
+                        <%= a&.question&.answers.count %>
+                        <span>answer</span>
+                    <% else %>
+                        <span>No answer</span>
+                    <% end %>
+                    </div> 
+                <% end %>
+            </div>
+        </div>
+<% else %>
+    <div> No any topic related Question </div>
+<% end %>
+<%
+=begin%>
+ 
     <% all = QuestionTopic.where(topic_id: @topic.id)  %>
 <table>
     <% if all.count > 0 %>
@@ -10,13 +38,24 @@
         <tbody> 
         <% all.each do |a| %>
         <% question = Question.find_by(id: a.question_id).question %>
-            <tr><td> <%= link_to question, question_path(a.id) %></td> </tr>
+            <tr><td> <%= link_to question, question_path(a.question_id) %>
+            <% if a.question.answers.any? %>
+            <%= a&.question&.answers.count %>
+            <% else %>
+            <div>Yet no answers</div>
+            <% end %></td> </tr>
         <% end %>   
         </tbody>
         <% else %>
+        <br/>
+        <br/>
         <td> No any Similar Question </td>
     <% end %>
-</table>
+</table> 
+<%
+=end%>
+
+
 
 <br/>
 <br/>

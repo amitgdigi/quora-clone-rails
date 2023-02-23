@@ -1,5 +1,8 @@
 <h1>Topics</h1> 
 <%= form_with( model: @topic , remote: true) do |f| %>
+        <% @topic.errors.each do |att, msg| %>
+            <div class="danger"><%=msg %></div>
+        <% end %>
     <%= f.label :topic %>
     <%= f.text_area :topic %>
     <%= f.submit %>

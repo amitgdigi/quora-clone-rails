@@ -1,8 +1,12 @@
- <h3>Topics You follow </h3>
- 
-<div class='main'>
-    <% if current_user&.topic&.each do |topic| %>
-        <li> <%= link_to topic.topic, topic_path(topic) %> </li>
+<br/>
+<br/>
+<h3>Topics You Follow </h3>
+<div class='container'>
+    <div class='row'>
+        <% if current_user&.topic&.each do |topic| %>
+        <div class='col-1'> <%= link_to topic.topic, topic_path(topic) %> </div>
+            <% end %> 
         <% end %> 
-    <% end %> 
+    </div>
 </div>
+<br/><div></div>

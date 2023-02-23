@@ -14,7 +14,7 @@
 <%= will_paginate @topics %>
 <div>   
 <br/>
-<% Question.take(7).each do |ques|%>
+<% Question.all.reverse.take(40).each do |ques|%>
     
  <%= render "questions/question_view", question: ques , last: true %>     
 <% end %>

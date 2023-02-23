@@ -17,18 +17,39 @@
             { multiple: true, prompt: "Want to follow any topic" })%>
 <%
 =end%>
+<%
+=begin%>
+ 
+<div class="container">
+<%= form_with( model: @question ) do |f| %>
+    <div class="row"> 
+        <div class="col-12 "> 
+        <%= f.label :question %> 
+        <%= f.text_area :question ,cols: 100, rows: 5 %></div>
+            <% for item in Topic.all %>
+            jj<%= check_box_tag "items[item_ids][]", item.id, @question.topic.include?(item) %>
+            kk<%=h item.topic %>  
+          <% end %>
+          <%= f.submit 'Ask any Question'%> 
+        <% end %> 
+    </div>
+</div> 
+<div class="field"> <%= f.label :question %> </div>
+<%
+=end%>
 
-
+  
  <br/>
 <%= form_with( model: @question ) do |f| %>
-<div class="field"> <%= f.label :question %> </div>
-    <%= f.text_area :question %>
+    <%= f.text_area :question , cols:80, rows:8, placeholder: "Write your question and select topic", class:"text-center"%>
     <% for item in Topic.all %>
-<div class="field"> 
-    <%= check_box_tag "items[item_ids][]", item.id, @question.topic.include?(item) %>
-    <%=h item.topic %> </div>
- <% end %> 
-<br />
- <div class="action"> <%= f.submit 'Ask any Question'%> </div>
+    <div class="col-2"> 
+        <%= check_box_tag "items[item_ids][]", item.id, @question.topic.include?(item) %>
+        <%=h item.topic %>
+    </div>
+    <% end %> 
+    <br />
+    <div class="action"> <%= f.submit 'Ask any Question'%> </div>
 <% end %> 
- 
+  
+<div class="col-2"> </div>

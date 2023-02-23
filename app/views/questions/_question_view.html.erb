@@ -1,24 +1,20 @@
-
+ <% if last & ans = question.answers.last %>
  <div class="list-group">
     <div class="list-group-item list-group-item-action flex-column ">
-    <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">
-    <%= link_to question.question , question_path(question)%> </h5>
-        <small>Asked by: <%= User.find(question.user_id).name %></small>
-        <small> <%= time_ago_in_words(question.created_at) %> ago</small>
+        <div class=" row d-flex w-100 justify-content-between">
+            <h5 class="mb-1 col-9">
+            <%= link_to question.question , question_path(question)%> </h5>
+            <small class="text-right">Asked by: <%= User.find(question.user_id).name %></small>
+            <small class="text-right"> <%= time_ago_in_words(question.created_at) %> ago</small>
+        </div>
+        <p class="mb-1 row col-12"><%= ans.answer %></p>
+        <small class="col-1 p-1">Answerd by: <%= User.find(ans.user_id).name %></small>
+        <small class="col-1 p-1"> <%= time_ago_in_words(ans.created_at) %> ago</small>
     </div>
-    
-    <% if last & ans = question.answers.last %>
-    <p class="mb-1"><%= ans.answer %></p>
-    <small>Answerd by: <%= User.find(ans.user_id).name %></small>
-    <small> <%= time_ago_in_words(ans.created_at) %> ago</small>
-    <% elsif !last %>
-        <%= render 'answers/list_of_answers', question: question %>
-
-        <%= render 'answers/answer', question: question if user_signed_in? %>
-    <% end %> 
-</div>
-</div> 
+</div>  
+ <% end %> 
+    <%= render 'answers/list_of_answers', question: question  if !last %>
+    <%= render 'answers/answer', question: question if user_signed_in? && !last%> 
 
 <%
 =begin%>

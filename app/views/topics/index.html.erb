@@ -1,21 +1,14 @@
-<strong><%= link_to "Create Topic" , new_topic_path %> &nbsp;
-</strong>
+<strong><%= link_to "Create Topic" , new_topic_path %> &nbsp;</strong>
  <%= render "topics/user_topic" %>
 
 <h1>Topics</h1> 
-<% @topics.each do |topi| %> 
-<table>
-      <tr>
-         <th><%= render "topics/follow_button", topic: topi %></th>
-         <%
-=begin%>
- <td><%= link_to 'Similar Questions', topic_path(topi) %> &nbsp; </td> 
-<%
-=end%>
- <br/>
-         <th><%= topi.topic %>(id:<%= topi.id %>)</th>
-      </tr>
-</table>    
-
-<% end %>
+<div class="container">
+      <div class="row text-center">
+      <% @topics.each do |topi| %>
+            <div class="col-1 pt-2"> <%= topi.topic%> </div>
+            <div class="col-1 pt-2"> <%= render "topics/follow_button", topic: topi %> </div>
+            <div class="col-10 "></div>
+      <% end %>
+      </div>
+</div>
    

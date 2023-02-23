@@ -1,9 +1,35 @@
-<%= link_to "Back", root_path %> <br/> <br/> 
+<%
+=begin%>
+ <%= link_to "Back", root_path %> <br/> <br/> 
  <strong>Topics:</strong> 
 <% @question.topic.each do |topic| %>
-  <div> <%= topic.topic %> </div>
+  <div class = "d-flex justify-content-between w-15 pb-2 "> 
+  <div>
+  <%= topic.topic %> 
+  </div>
+  <div>
+  <%= render "topics/follow_button", topic: topic %>
+  </div>
+  </div>
 <% end %> <br/>
- <strong>Question:</strong>
+ <strong>Question: <%= @question.question%></strong>
 <div>
   <%= render "questions/question_view", question: @question , last: false %>
-</div> 
+</div>  
+<%
+=end%>
+ <%= link_to "Back", root_path %> <br/> <br/> 
+<div class="container">
+  <div class="row">
+  <strong>Topics:</strong> 
+  <% @question.topic.each do |topic| %>
+    <div class="col-2">
+      <%= topic.topic %>  
+      <%= render "topics/follow_button", topic: topic %>
+    </div> 
+  <% end %> 
+  </div><br/> 
+</div>
+<div><strong>Question:</strong> <%= @question.question %>
+  <%= render "questions/question_view", question: @question , last: false %>
+</div>  

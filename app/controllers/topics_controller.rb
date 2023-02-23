@@ -56,8 +56,7 @@ class TopicsController < ApplicationController
             puts "Unique topic"
             flash[:notice] = "topic is created"
         else
-            flash[:danger] = "Topic is already present"
-            redirect_to root_path
+            render new_topic_path  
         end
     end
 
