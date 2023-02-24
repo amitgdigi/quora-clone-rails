@@ -4,13 +4,14 @@
 <div class="container">
     <div class="row">
     <% @users.each do |user| %> 
-        <% another_user = user if user != current_user   %>
-        <% if !another_user.nil? %>
-            <% ano_user = another_user  %> 
-            <div class="col-1 pt-2"> <%= ano_user.name%> </div>
-            <div class="col-1 pt-2"> <%= render "pages/user_button", ano_user: ano_user %> </div>
-            <div class="col-10"></div>
-        <% end %> 
+        <div class="col-1 pt-2"> <%= user.name%> </div>
+        <% if user == current_user %>
+            <div class="col-1 pt-2"> <%= button_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> </div>
+        <% else %>
+        
+            <div class="col-1 pt-2", id="user-<%= user.id %>-button"> <%= render "pages/user_button", user: user %> </div>
+        <% end %>
+        <div class="col-10"></div>
     <% end %>
     </div>
 </div>

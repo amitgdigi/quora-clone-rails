@@ -1,5 +1,5 @@
- <% if active_relation?(ano_user) %>
-    <%= button_to "unfollow ", remove_path(ano_user), method: :delete %>
+<% if active_relation?(user) %>
+    <%= button_to "unfollow ", remove_path(user),remote: true, method: :delete %>
 <% else %>
-    <%= button_to "follow ", add_path(ano_user), method: :post %>
+    <%= button_to "follow ", add_path(user),remote: true, method: :post %>
 <% end %> 

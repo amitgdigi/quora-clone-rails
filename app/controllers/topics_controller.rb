@@ -5,23 +5,35 @@ class TopicsController < ApplicationController
         @topic = Topic.new
     end
     def follow
-        topic = Topic.find(params[:topic_id])
-        @topic_follow = Follow.create(user_id: current_user.id, topic_id: topic.id)
+        @topic = Topic.find(params[:topic_id])
+        @topic_follow = Follow.create(user_id: current_user.id, topic_id: @topic.id)
         if @topic_follow.save
             flash[:alert] = "Topic is Followed"
         end
-        redirect_to topics_path
-    end
+        respond_to do |format|
+            
+            format.html { redirect_to @topic }
+            format.js {render layout: false}
+            # byebug
+            end
 
+        # redirect_to topics_path
+    end
+    
     def unfollow
-        topic = Topic.find(params[:topic_id])
-        @topic_follow = Follow.where(user_id: current_user.id, topic_id: topic.id)
+        @topic = Topic.find(params[:topic_id])
+        @topic_follow = Follow.where(user_id: current_user.id, topic_id: @topic.id)
         puts @topic_follow
         unless @topic_follow.nil?
             @topic_follow.destroy_all
             flash[:alert] = "Topic is unfollowed"
         end
-        redirect_to topics_path
+        respond_to do |format|
+            format.html { redirect_to @topic }
+            format.js {render layout: false}
+            # byebug
+            end
+        # redirect_to topics_path
     end 
 
 
@@ -61,7 +73,7 @@ class TopicsController < ApplicationController
     end
 
     def index            
-        @topics = Topic.all
+        @topics = Topic.paginate(page: params[:page], per_page: 7)
     end
 
     def destroy

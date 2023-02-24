@@ -1,57 +1,49 @@
 class PagesController < ApplicationController 
     before_action :authenticate_user!, only: [:add_user, :remo_user]
     def user_questions
-        @user = current_user
-        # byebug
-        @ques = @user.questions.paginate(page: params[:page], per_page: 10)
+        user_questions = current_user
+        @ques = user_questions.questions.paginate(page: params[:page], per_page: 10)
     end
 
     def user_answers
-        # byebug
-        @user = current_user
-        @ans = @user.answers.paginate(page: params[:page], per_page: 10)
-        # byebug
+        user_questions = current_user
+        @ans =user_questions.answers.paginate(page: params[:page], per_page: 10)
     end
 
     def userss
         puts "hello"
         puts "hello"
       @users = User.paginate(page: params[:page], per_page: 5)
-#  <% @users= User.paginate(page: params[:page], per_page: 5)%>
-
     end
 
     def add_user
-        user = User.find(params[:id])
-        @added_user = Relationship.create(following_id: current_user.id, followed_id: user.id)
+        @user = User.find(params[:id])
+        @added_user = Relationship.create(following_id: current_user.id, followed_id: @user.id)
                     # <Relationship id: nil, following_id: nil, followed_id: nil>
         if @added_user.save
-            flash[:success] = "You are following #{user.name}"
+            flash[:success] = "You are following #{@user.name}"
         else
-            flash[:danger] = "unable to follow #{user.name}"
-            byebug
+            flash[:danger] = "unable to follow #{@user.name}"
         end
-        puts "hello"
-        puts "hello"
-        puts user
-        redirect_to userss_path
+        respond_to do |format|
+            format.html {redirect_to @user} 
+            format.js {render layout: false}
+        end
     end
 
     def remo_user
-        user = User.find(params[:id])
-        @added_user = Relationship.where(following_id: current_user.id, followed_id: user.id)
-        # <Relationship id: nil, following_id: nil, followed_id: nil>
+        @user = User.find(params[:id])
+        @added_user = Relationship.where(following_id: current_user.id, followed_id: @user.id)
         unless @added_user.nil?
             @added_user.destroy_all
-            flash[:success] = "unfollowed #{user.name}"
+            flash[:success] = "unfollowed #{@user.name}"
         else
-            flash[:danger] = "unable to unfollow #{user.name}"
-            byebug
+            flash[:danger] = "unable to unfollow #{@user.name}"
         end
-        puts "hello"
-        puts "hello"
-        puts user.name
-        redirect_to userss_path
+        respond_to do |format|
+            format.html {redirect_to @user} 
+            format.js {render layout: false}
+        end
     end
     
 end

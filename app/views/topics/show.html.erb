@@ -2,8 +2,8 @@
 
 <br/>
 <div class="d-flex justify-content-around w-20">
-<strong><%= @topic.topic %> </strong>
-<strong><%= render "topics/follow_button", topic: @topic %></strong>
+<strong id="topic-<%= @topic.id%>-name"><%= @topic.topic %> </strong>
+<strong id= "topic-<%= @topic.id%>-button"><%= render "topics/follow_button", topic: @topic %></strong>
 </div>
 <br/>
 <% all = QuestionTopic.where(topic_id: @topic.id)  %>
@@ -28,35 +28,6 @@
 <% else %>
     <div> No any topic related Question </div>
 <% end %>
-<%
-=begin%>
- 
-    <% all = QuestionTopic.where(topic_id: @topic.id)  %>
-<table>
-    <% if all.count > 0 %>
-        <thead><tr><td>Similar Questions</td></tr> </thead>
-        <tbody> 
-        <% all.each do |a| %>
-        <% question = Question.find_by(id: a.question_id).question %>
-            <tr><td> <%= link_to question, question_path(a.question_id) %>
-            <% if a.question.answers.any? %>
-            <%= a&.question&.answers.count %>
-            <% else %>
-            <div>Yet no answers</div>
-            <% end %></td> </tr>
-        <% end %>   
-        </tbody>
-        <% else %>
-        <br/>
-        <br/>
-        <td> No any Similar Question </td>
-    <% end %>
-</table> 
-<%
-=end%>
-
-
-
 <br/>
 <br/>
 <%= link_to "Go to Topics", topics_path %>       

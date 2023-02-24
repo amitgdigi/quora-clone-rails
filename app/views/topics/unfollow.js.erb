@@ -1,0 +1,5 @@
+$("#topic-<%= @topic.id%>-button").html("<%= j render(partial: 'topics/follow_button', locals:{topic: @topic} ) %>");
+$("#topic-<%= @topic.id%>-name").html("<%= j @topic.topic %>");
+$("#topic-<%= @topic.id%>-link").html("<%= j @topic.topic %>");
+console.log("<%= j render(partial: 'topics/follow_button', locals:{topic: @topic} ) %>")
+$(".topics-you-follow").html('<% if current_user&.topic&.each do |topic| %><div class="col-1", id="topic-<%= topic.id%>-link"> <%= link_to topic.topic, topic_path(topic) %> </div><% end %> <% end %> ')

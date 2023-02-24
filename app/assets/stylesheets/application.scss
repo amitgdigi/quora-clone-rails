@@ -17,6 +17,9 @@
  body {
     background-color: #f8f9fa;
     // padding-left: 200px;
+    display: flex;
+    flex-direction: column;
+    min-height: 665px;
  }
 
  .footer-center{
@@ -83,10 +86,11 @@
   }
 
 .pagination {
-    display: flex;
+   //  display: flex;
     margin-left: 80%;
     align-items: flex-end;  
     justify-content: space-between;
+    width: 220px;
   }
 .new-form-row{
    align-items: flex-end;
@@ -107,6 +111,9 @@
 
 .pd-r-20{
    padding-right:20px;
+}
+.mw-830{
+   max-width: 830px;
 }
 
 // .d-flex {

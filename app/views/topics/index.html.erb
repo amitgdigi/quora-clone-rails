@@ -1,14 +1,13 @@
 <strong><%= link_to "Create Topic" , new_topic_path %> &nbsp;</strong>
  <%= render "topics/user_topic" %>
-
 <h1>Topics</h1> 
 <div class="container">
       <div class="row text-center">
       <% @topics.each do |topi| %>
-            <div class="col-1 pt-2"> <%= topi.topic%> </div>
-            <div class="col-1 pt-2"> <%= render "topics/follow_button", topic: topi %> </div>
+            <div class="col-1 pt-2", id="topic-<%= topi.id%>-name"><%= topi.topic%> </div>
+            <div class="col-1 pt-2 ", id="topic-<%= topi.id%>-button"> <%= render "topics/follow_button", topic: topi %> </div>
             <div class="col-10 "></div>
       <% end %>
+      <%= will_paginate @topics %>
       </div>
 </div>
-   

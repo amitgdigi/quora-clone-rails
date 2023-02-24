@@ -2,9 +2,9 @@
 <br/>
 <h3>Topics You Follow </h3>
 <div class='container'>
-    <div class='row'>
-        <% if current_user&.topic&.each do |topic| %>
-        <div class='col-1'> <%= link_to topic.topic, topic_path(topic) %> </div>
+    <div class='row topics-you-follow'>
+ <% if current_user&.topic&.each do |topic| %>
+        <div class='col-1', id="topic-<%= topic.id%>-link"> <%= link_to topic.topic, topic_path(topic) %> </div>
             <% end %> 
         <% end %> 
     </div>
