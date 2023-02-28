@@ -1,24 +1,16 @@
 class AnswersController < ApplicationController
     before_action :authenticate_user!, only: [:create, :show, :destroy]
+    before_action :set_answer, only: [:destroy]
 
     def create
         @question = Question.find(params[:question_id])
         @answer = @question.answers.create(answer_params)
         @answer.user = current_user
-        if @answer.save
-            if @answer.attachment.attached?
-                attachment =(params[:answer][:attachment])
-                @attach = Attachment.create(answer_id: @answer.id , attachment: attachment)
-                if @attach.save
-                    attachment_danger = 'attachement is saved'
-                else
-                    attachment_danger = 'Unable to save attachment'
-                end 
-            end 
-            flash[:success] = "Answer is saved #{attachment_danger if attachment_danger}"
+        if @answer.save 
+            flash[:success] = "Answer is saved "
             redirect_to question_answer_path(@question,@answer)
         else
-            flash[:danger] = "Unable to save Your Answer, Please try again #{attachment_danger if attachment_danger}"
+            flash[:danger] = "Unable to save Your Answer, Please try again "
             redirect_to question_path(@question)
         end
         
@@ -33,15 +25,23 @@ class AnswersController < ApplicationController
         byebug
         @answers = @question.answers.paginate(page: params[:page], per_page: 5)
     end
-
+# 
+# edit answer
+# update answer
+# votable answer
+# chain commentable
+#  
+#     
     def destroy
-        @answer = Answer.find(params[:id])
         if @answer.destroy
         redirect_to root_path
         end
     end
 
     private
+    def set_answer
+        @answer = Answer.find(params[:id])
+    end
 
     def answer_params
         params.require(:answer).permit(:answer, :attachment)

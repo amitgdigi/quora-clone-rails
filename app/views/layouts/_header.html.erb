@@ -14,9 +14,9 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-  <br/>
-  <ul class=" navbar-nav mr-auto mt-2 mt-lg-0 ">
-    <li class="nav-item active nav-link ">
+    <br/>
+    <ul class=" navbar-nav mr-auto mt-2 mt-lg-0 ">
+        <li class="nav-item active nav-link ">
         <%= link_to "HomePage", root_path %> </li>
         &nbsp;
         &nbsp;  
@@ -27,22 +27,32 @@
         <% end %>
     </ul>
         <% if user_signed_in? %>
+        <div class="toggle"> 
+            <%= link_to "User Profile", user_info_path(current_user) if user_signed_in? %>
+        </div> &nbsp; &nbsp;
         <div class="nav-item active nav-link">
             <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> </div>
-            <div class="nav-item active nav-link">
+        <div class="nav-item active nav-link">
             <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-            &nbsp; &nbsp; </div> 
-            <div class="btn-group dropleft toggle" >
-    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="toggle">
-        User_info(t-e)
-    </button>
+        </div>
+            
+                 
+
+            <%
+=begin%>
+        <div class="btn-group dropleft toggle"> 
+ <a href="#" class="dropdown-toggle dropdown-toggle hover-value" data-toggle="dropdown">
+                User_info <b class="caret"></b>
+            </a>
             <ul class="dropdown-menu">
-                <!-- Dropdown menu links -->
-                <li class="dropdown-item" >Email: <strong><%= current_user.email %></strong></li>
-                <li class="dropdown-item" >Name:  <strong><%= current_user.name %></strong></li>
-            </ul>
-    </div>
-           <% else %>
+                <li class="dropdown-item">Email: <strong><%= current_user.email %></strong></li>
+                <li class="dropdown-item">Name:  <strong><%= current_user.name %></strong></li>
+                <li class="divider"></li>
+            </ul> 
+        </div>     
+<%
+=end%>
+     <% else %>
             <li class="nav-item active nav-link">
             <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> </li>
             <li class="nav-item active nav-link">

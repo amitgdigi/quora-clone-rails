@@ -1,25 +1,20 @@
 class PagesController < ApplicationController 
     before_action :authenticate_user!, only: [:add_user, :remo_user]
     def user_questions
-        user_questions = current_user
-        @ques = user_questions.questions.paginate(page: params[:page], per_page: 10)
+        @ques = current_user.questions.paginate(page: params[:page], per_page: 10)
     end
 
     def user_answers
-        user_questions = current_user
-        @ans =user_questions.answers.paginate(page: params[:page], per_page: 10)
+        @ans = current_user.answers.paginate(page: params[:page], per_page: 10)
     end
 
-    def userss
-        puts "hello"
-        puts "hello"
-      @users = User.paginate(page: params[:page], per_page: 5)
+    def userss 
+        @users = User.paginate(page: params[:page], per_page: 5)
     end
 
     def add_user
         @user = User.find(params[:id])
         @added_user = Relationship.create(following_id: current_user.id, followed_id: @user.id)
-                    # <Relationship id: nil, following_id: nil, followed_id: nil>
         if @added_user.save
             flash[:success] = "You are following #{@user.name}"
         else

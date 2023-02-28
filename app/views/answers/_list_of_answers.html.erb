@@ -2,28 +2,19 @@
     <% @ans = question.answers.paginate(page: params[:page], per_page: 5) %>
     <% @ans.each do |list| %>
 <div class="card">
-<div class="card-body ans-pading">
-<div class="card-title"><%= list.answer %>
-</div>
-<div class="d-flex">
-<small class="pd-r-20">
-Answer by: <%= User.find(list.user_id).name %>
-</small>
-<small class="pd-r-20">
-<%= time_ago_in_words(list.created_at) %> ago
-</small>
-<small class="pd-r-20"> 
- <% if image = list.attachment.attached? %>
-    <% check = list.attachment.filename.to_s %>
-    <% if check.include?(".jpeg") || check.include?(".jpg") || check.include?(".gif") || check.include?(".png") %>
-        <%=  image_tag list.attachment %> 
-    <% else %>Download&nbsp; 
-        <%= link_to list.attachment.filename, rails_blob_path(list.attachment, disposition: 'attachment') %>
-    <% end %>
-<% end %>  
-</small>
-</div>
-</div>
+    <div class="card-body ans-pading">
+        <div class="card-title"><%= list.answer %> </div>
+        <div class="d-flex">
+            <% user1 = User.find(list.user_id) %>
+            <small class="pd-r-20">
+            Answer by: <%= user1.name %>
+            <%= render "pages/user_avatar", user: user1 %> </small>
+            <small class="pd-r-20 pt-3">
+            <%= time_ago_in_words(list.created_at) %> ago </small>
+            <small class="pd-r-20"> 
+            <%= render "answers/attachment", answer: list %> </small>
+        </div>
+    </div>
 </div>
     <% end%>
 </table>

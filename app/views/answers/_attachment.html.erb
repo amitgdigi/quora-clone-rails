@@ -1,0 +1,8 @@
+ <% if any_image = answer.attachment.attached? %>
+    <% check = answer.attachment.filename.to_s %>
+    <% if check.include?(".jpeg") || check.include?(".jpg") || check.include?(".gif") || check.include?(".png") %>
+        <%=  image_tag answer.attachment %> 
+    <% else %>Download&nbsp; 
+        <%= link_to answer.attachment.filename, rails_blob_path(answer.attachment, disposition: 'attachment') %>
+    <% end %>
+<% end %>

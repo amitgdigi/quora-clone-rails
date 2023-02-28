@@ -1,0 +1,33 @@
+    <br>
+    <br>
+    <% if user_signed_in? %>
+    <div class="container" > 
+    <br>
+    <% user = User.find(params[:id]) %>
+        <div class="col-3"><%= image_tag(user.avatar,id:"avatar") if user.avatar.attached? %><h1><%= user.name %></h1> </div>
+        <div class="col-4 pt-2">Contact: <%= user.email %></div>
+        <div class="col-4 pt-2">Following <%= user.followed_ids.count %></div>
+        <div class="col-4 pt-2">Followed <%= user.following_ids.count %></div>
+        <div class="col-4 pt-2">Follows topic: <%= user.follow_ids.count %></div>
+        <div class="col-3 pt-2">Question asked: <%= user.questions.count %></div>
+        <div class="col-3 pt-2">Answer given: <%= user.answers.count %></div>
+        <%
+=begin%>
+ <div class="row ">
+            <div class="col-12", id="user-fit-image"><% image_tag(user.avatar) if user.avatar.attached? %> </div>
+            <div class="col-3 pt-2">Name: <%= user.name %> </div>
+            <div class="col-3 pt-2">Email: <%= user.email %> </div>
+            <div class="col-2 pt-2">Following <%= user.followed_ids.count %></div>
+            <div class="col-2 pt-2">Followed <%= user.following_ids.count %></div>
+            <div class="col-2 pt-2">Topics Follow: <%= user.follow_ids.count %></div>
+            <div class="col-3 pt-2">Question asked: <%= user.questions.count %></div>
+            <div class="col-3 pt-2">Answer given: <%= user.answers.count %></div>
+            <div class="col-2 pt-2"></div>
+            <div class="col-2 pt-2"></div>
+            <div class="col-2 pt-2"></div>
+            <br><br>
+        </div> 
+<%
+=end%>
+    </div> 
+    <% end %> 

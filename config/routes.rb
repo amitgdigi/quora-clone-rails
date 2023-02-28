@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # root to:'questions#index'
   root to:'pages#home'
   
+  get '/user/:id', to: 'pages#user_info', as:'user_info'
   # get '/:id',to: 'follow#user_questions'
   get '/ques',to: 'pages#user_questions'
   get '/ans',to: 'pages#user_answers'

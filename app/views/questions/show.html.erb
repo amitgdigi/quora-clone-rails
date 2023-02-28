@@ -25,7 +25,9 @@
   <% @question.topic.each do |topic| %>
     <div class="col-2">
       <%= topic.topic %>  
-    <div id= "topic-<%= topic.id%>-button">  <%= render "topics/follow_button", topic: topic %></div>
+      <% if user_signed_in? %>
+          <div id= "topic-<%= topic.id%>-button">  <%= render "topics/follow_button", topic: topic %></div>
+      <% end %>
     </div> 
   <% end %> 
   </div><br/> 

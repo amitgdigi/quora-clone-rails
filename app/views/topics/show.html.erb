@@ -2,8 +2,10 @@
 
 <br/>
 <div class="d-flex justify-content-around w-20">
-<strong id="topic-<%= @topic.id%>-name"><%= @topic.topic %> </strong>
-<strong id= "topic-<%= @topic.id%>-button"><%= render "topics/follow_button", topic: @topic %></strong>
+    <% if user_signed_in? %>
+        <strong id="topic-<%= @topic.id%>-name"><%= @topic.topic %> </strong>
+        <strong id= "topic-<%= @topic.id%>-button"><%= render "topics/follow_button", topic: @topic %></strong>
+    <% end %>
 </div>
 <br/>
 <% all = QuestionTopic.where(topic_id: @topic.id)  %>

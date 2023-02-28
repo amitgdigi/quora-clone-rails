@@ -4,12 +4,17 @@
         <div class=" row d-flex w-100 justify-content-between">
             <h5 class="mb-1 col-9">
             <%= link_to question.question , question_path(question)%> </h5>
-            <small class="text-right">Asked by: <%= User.find(question.user_id).name %></small>
-            <small class="text-right"> <%= time_ago_in_words(question.created_at) %> ago</small>
+            <% user1 = User.find(question.user_id) %>
+            <small class="text-right">Asked by: <%= user1.name %>
+            <%= render "pages/user_avatar", user: user1 %></small>
+            <small class="text-right pt-3"> <%= time_ago_in_words(question.created_at) %> ago</small>
         </div>
         <p class="mb-1 row col-12"><%= ans.answer %></p>
-        <small class="col-1 p-1">Answerd by: <%= User.find(ans.user_id).name %></small>
-        <small class="col-1 p-1"> <%= time_ago_in_words(ans.created_at) %> ago</small>
+            <% user2 = User.find(ans.user_id) %>
+        <small class="col-1 p-1">Answerd by: <%= user2.name %>
+            <%= render "pages/user_avatar", user: user1 %></small>
+        </small>
+        <small class="col-1 pt-3"> <%= time_ago_in_words(ans.created_at) %> ago</small>
     </div>
 </div>  
  <% end %> 

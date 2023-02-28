@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_21_120201) do
+ActiveRecord::Schema.define(version: 2023_02_26_173817) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -48,14 +48,6 @@ ActiveRecord::Schema.define(version: 2023_02_21_120201) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
-  end
-
-  create_table "attachments", force: :cascade do |t|
-    t.integer "answer_id", null: false
-    t.string "attachment"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["answer_id"], name: "index_attachments_on_answer_id"
   end
 
   create_table "follows", force: :cascade do |t|
@@ -116,7 +108,6 @@ ActiveRecord::Schema.define(version: 2023_02_21_120201) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
-  add_foreign_key "attachments", "answers"
   add_foreign_key "follows", "topics"
   add_foreign_key "follows", "users"
   add_foreign_key "question_topics", "questions"

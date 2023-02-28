@@ -5,13 +5,14 @@
     <div class="d-flex justify-content-between w-80 ">
         <h5 class="mb-1 mw-830">
     <%= link_to question.question , question_path(question)%> </h5>
-    <div class = "d-flex w-20 justify-content-around edit-delete">
+    <div class = "d-flex justify-content-around edit-delete">
     <% if current_user && question.user_id==current_user.id %>
         <small class="right-1" ><%= link_to "edit" , edit_question_path(question) %></small>
         <small class="right-2"><%= link_to "delete" , question_path(question), method: :delete %></small>
     <% else %>
-        <small class="right-1" >Asked by: <%= User.find(question.user_id).name %></small>
-        <small class="right-2"><%= time_ago_in_words(question.created_at) %> ago</small>
+    <% user1 =User.find(question.user_id)  %>
+        <small class="right-1" >Asked by: <%= user1.name %><%= render "pages/user_avatar", user: user1 %></small>
+        <small class="right-2 pt-3"><%= time_ago_in_words(question.created_at) %> ago</small>
     <% end %>
 
     </div>

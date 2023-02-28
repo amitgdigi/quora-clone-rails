@@ -1,7 +1,21 @@
-<header>
-    <%= link_to "Go to Question Page", questions_path %>
-</header>
-<h1>Answer</h1>
-<div> <%= @answer.answer  %></div>
+<header> <%= link_to "Go to Question Page", questions_path %> </header>
+<br>
+<br>
+<div class="container">
+    <div class="col-3"> <h1>Answer</h1> </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8 text-center"><%= @answer.answer  %></div>
+        <div class="col-2"></div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-7 "><%= render 'answers/attachment', answer: @answer  %></div>
+        <div class="col-3"></div>
+    </div>
+</div>
+<br>
+<br>
 <%= link_to "Go to Question", question_path(@question) %>
 

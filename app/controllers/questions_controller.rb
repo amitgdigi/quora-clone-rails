@@ -1,14 +1,21 @@
 class QuestionsController < ApplicationController
     before_action :authenticate_user! , only: [:new, :edit, :create, :destroy]
-    before_action :set_question, only: [:edit, :show]
+    before_action :set_question, only: [:edit, :show, :destroy]
     def new
         @question = current_user.questions.build
     end
 
     def create
         @question = current_user.questions.build(question_params)
+        # if save
+        # success
+        # else
+        # error
+        # type of errror(dynamic)
+        # topic creation in one line
+        #         
         if params[:items].nil?
-            flash[:success] = "topic selection is mendatory"
+            flash[:error] = "topic selection is mendatory"
             render 'new'
             # redirect_to new_question_path
         elsif @question.save   
@@ -34,16 +41,15 @@ class QuestionsController < ApplicationController
 
     end
     
-    def show
-        @question = Question.find(params[:id])
-    end
+    # def show
+    #     @question = Question.find(params[:id])
+    # end
     
-    def edit
-        @question = Question.find(params[:id])
-    end
+    # def edit
+    #     @question = Question.find(params[:id])
+    # end
 
     def destroy
-        @question = Question.find(params[:id])
         if @question.destroy
             redirect_to questions_path 
         end
