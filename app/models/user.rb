@@ -24,7 +24,7 @@ class User < ApplicationRecord
       if avatar.attached?
         (avatar.variant(resize_to_fit: [50, 50]).processed)
       else
-        '/app/assets/images/avatar2.jpg'
+        "avatar2.jpg"
       end
     end
 

@@ -7,12 +7,13 @@
         <div class="d-flex">
             <% user1 = User.find(list.user_id) %>
             <small class="pd-r-20">
-            Answer by: <%= user1.name %>
-            <%= render "pages/user_avatar", user: user1 %> </small>
+                Answer by: <%= user1.name %>
+                <%= link_to (image_tag user1.avatar_thumbnail, id: 'avatar') , user_info_path(user1) %>
+            </small>
             <small class="pd-r-20 pt-3">
-            <%= time_ago_in_words(list.created_at) %> ago </small>
+                <%= time_ago_in_words(list.created_at) %> ago </small>
             <small class="pd-r-20"> 
-            <%= render "answers/attachment", answer: list %> </small>
+                <%= render "answers/attachment", answer: list %> </small>
         </div>
     </div>
 </div>

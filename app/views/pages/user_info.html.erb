@@ -4,7 +4,7 @@
     <div class="container" > 
     <br>
     <% user = User.find(params[:id]) %>
-        <div class="col-3"><%= image_tag(user.avatar,id:"avatar") if user.avatar.attached? %><h1><%= user.name %></h1> </div>
+        <div class="col-3"><%= image_tag(user.avatar_thumbnail, id:"avatar") %><h1><%= user.name %></h1> </div>
         <div class="col-4 pt-2">Contact: <%= user.email %></div>
         <div class="col-4 pt-2">Following <%= user.followed_ids.count %></div>
         <div class="col-4 pt-2">Followed <%= user.following_ids.count %></div>
